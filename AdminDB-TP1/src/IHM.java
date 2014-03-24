@@ -65,12 +65,14 @@ public class IHM extends JFrame
                                 ResultSet rs = statement.getResultSet();
                                 
                                 StringBuilder sb = new StringBuilder();
-                                int i = 0;
+                                //int i = 0;
                                 
-                                while (rs.next())
+                                while (!(rs.isLast()))
                                 {
-                                    System.out.println(i++);
-                                    System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
+                                    rs.next();
+
+                                    //System.out.println(i++);
+                                    //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
                                     sb.append(rs.getInt(1)).append('\n');
                                 }
                                 
