@@ -15,6 +15,7 @@ public class Filtre {
         } else if (status == 1) {
             res.append(" where IDVendeur = ").append(id);
         }
+        System.out.println(res.toString());
         return res.toString();
     }
 }
