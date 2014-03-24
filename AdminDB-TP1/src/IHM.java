@@ -66,7 +66,7 @@ public class IHM extends JFrame
                                 String request = jtf1.getText();
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
-                                request = Filtre.filtrer(request, 1, 20);
+                                request = Filtre.filtrer(request, status, id);
                                 statement.execute(request);
                                 ResultSet rs = statement.getResultSet();
                                 
