@@ -73,8 +73,7 @@ public class IHM extends JFrame
                                 
                                 while (rs.next())
                                 {
-                                    //System.out.println(i++);
-                                    //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
+                                    System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
                                     sb.append(rs.getInt(1)).append('\n');
                                     
                                     if (rs.isLast())
