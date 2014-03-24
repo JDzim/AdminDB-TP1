@@ -71,7 +71,6 @@ public class IHM extends JFrame
                                 {
                                     System.out.println(i++);
                                     sb.append(rs.getInt(1)).append('\n');
-                                    rs.next();
                                 }
                                 
                                 if (sb.toString().compareTo("") != 0)
