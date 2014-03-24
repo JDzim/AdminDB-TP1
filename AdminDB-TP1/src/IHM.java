@@ -49,8 +49,16 @@ public class IHM extends JFrame
                                 statement.execute(request);
                                 ResultSet rs = statement.getResultSet();
                                 rs.next();
-                                String s = rs.getString(1);
-                                jl.setText(s);
+                                
+                                if (rs != null)
+                                {
+                                    String s = rs.getString(1);
+                                    jl.setText(s);
+                                }
+                                else
+                                {
+                                    throw new NoResultException();
+                                }
                             }
                         }
                         catch (ClassNotFoundException cnfe)
