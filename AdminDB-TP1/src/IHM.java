@@ -2,6 +2,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JButton;
@@ -45,8 +46,11 @@ public class IHM extends JFrame
                                 String request = jtf.getText();
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
-                                //statement.execute(request);
+                                statement.execute(request);
                                 jl.setText(request);
+                                ResultSet rs = statement.getResultSet();
+                                String s = rs.getString(1);
+                                jl.setText(s);
                             }
                         }
                         catch (ClassNotFoundException cnfe)
