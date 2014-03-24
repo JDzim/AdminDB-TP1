@@ -5,21 +5,25 @@ import java.sql.SQLException;
 public class Singleton 
 {
     
-    private Connection instance = null;
-    private final String url = "";
-    private final String login = "";
-    private final String password = "";
+    private static Singleton instance = null;
+    private Connection connection = null;
+    private final String driver = "oracle.jdbc.driver.OracleDriver";
+    private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    private final String login = "system";
+    private final String password = "ftyui";
     
-    private Singleton()
+    private Singleton() throws ClassNotFoundException, SQLException
     {
-        try
-        {
-            instance = DriverManager.getConnection(url,login,password);
-        }
-        catch (SQLException sqle)
-        {
-            sqle.printStackTrace();
-        }
+        Class.forName(driver);
+        connection = DriverManager.getConnection(url,login,password);
+    }
+    
+    public static Singleton getConnection() throws ClassNotFoundException, SQLException
+    {
+        if (instance == null)
+            instance = new Singleton();
+        
+        return instance;
     }
     
 }

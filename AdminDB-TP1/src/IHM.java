@@ -1,4 +1,6 @@
+import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -13,7 +15,7 @@ public class IHM extends JFrame
 	public IHM()
 	{
 		this.setTitle("Filtre SQL");
-                this.setSize(new Dimension(1600, 900));
+                this.setSize(new Dimension(800, 450));
                 this.setResizable(false);
                 this.initialize();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -24,9 +26,10 @@ public class IHM extends JFrame
         private void initialize()
         {
             JPanel jp = new JPanel();
-            JLabel jl = new JLabel();
-            JTextField jtf = new JTextField();
-            JButton jb = new JButton();
+            final JLabel jl = new JLabel();
+            final JTextField jtf = new JTextField();
+            final JButton jb = new JButton();
+            GridLayout gl = new GridLayout(3, 1);
             
             jb.addActionListener
             (
@@ -35,14 +38,23 @@ public class IHM extends JFrame
                     @Override
                     public void actionPerformed(ActionEvent ae) 
                     {
-                        
+                        if (ae.getSource().equals(jtf))
+                        {
+                            
+                        }
+                        if (ae.getSource().equals(jb))
+                        {
+                            String query = jtf.getText();
+                            //Connection c = Singleton.getConnection();
+                        }
                     }
                 }
             );
             
-            jp.add(jl);
+            jp.setLayout(gl);
             jp.add(jtf);
             jp.add(jb);
+            jp.add(jl);
             this.add(jp);
         }
 	
