@@ -46,19 +46,27 @@ public class IHM extends JFrame
                                 String request = jtf.getText();
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
-                                
+                                request = Filtre.filtrer(request, 1, 20);
                                 statement.execute(request);
                                 ResultSet rs = statement.getResultSet();
+                               
                                 rs.next();
+                                StringBuilder sb = new StringBuilder();
+                                
+                                while (rs.next())
+                                {
+                                    sb.append(rs.getString(1)).append('\n');
+                                    rs.next();
+                                }
                                 
                                 if (rs != null)
                                 {
-                                    String s = rs.getString(1);
-                                    jl.setText(s);
+                                    sb.append(rs.getString(1)).append('\n');
+                                    jl.setText(sb.toString());
                                 }
                                 else
                                 {
-                                    System.out.println("nothing");
+                                    jl.setText("nothing");
                                 }
                             }
                         }
