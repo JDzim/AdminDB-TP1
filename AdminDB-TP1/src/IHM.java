@@ -45,6 +45,8 @@ public class IHM extends JFrame
                                 String request = jtf.getText();
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
+                                //statement.execute(request);
+                                jl.setText(request);
                             }
                         }
                         catch (ClassNotFoundException cnfe)
