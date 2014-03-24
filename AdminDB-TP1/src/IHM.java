@@ -16,6 +16,9 @@ import javax.swing.JTextField;
 
 public class IHM extends JFrame
 {
+        private int status = -1;
+        private int id = -1;
+    
 	public IHM() throws ClassNotFoundException
 	{
 		this.setTitle("Filtre SQL");
@@ -32,19 +35,20 @@ public class IHM extends JFrame
             JPanel littleJp = new JPanel();
             JPanel bigJp = new JPanel();
             final JLabel jl = new JLabel();
-            final JTextField jtf = new JTextField();
+            final JTextField jtf1 = new JTextField();
+            final JTextField jtf2 = new JTextField();
             final JButton jb = new JButton();
             GridLayout littleGl = new GridLayout(1, 3);
-            GridLayout bigGl = new GridLayout(4, 1);
+            GridLayout bigGl = new GridLayout(5, 1);
             
             JRadioButtonMenuItem jrbmi = new JRadioButtonMenuItem();
-            JRadioButton jrb1 = new JRadioButton("Client");
-            JRadioButton jrb2 = new JRadioButton("Vendeur");
-            JRadioButton jrb3 = new JRadioButton("Responsable");
+            JRadioButton jrb0 = new JRadioButton("Client");
+            JRadioButton jrb1 = new JRadioButton("Vendeur");
+            JRadioButton jrb2 = new JRadioButton("Responsable");
             ButtonGroup bg = new ButtonGroup();
+            bg.add(jrb0);
             bg.add(jrb1);
             bg.add(jrb2);
-            bg.add(jrb3);
             
             jb.addActionListener
             (
@@ -57,7 +61,7 @@ public class IHM extends JFrame
                         {
                             if (ae.getSource().equals(jb))
                             {
-                                String request = jtf.getText();
+                                String request = jtf1.getText();
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
                                 request = Filtre.filtrer(request, 1, 20);
@@ -99,27 +103,66 @@ public class IHM extends JFrame
                     }
                 }
             );
+            
+            jtf2.addActionListener
+            (
+                new ActionListener()
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) 
+                    {
+                        id = Integer.parseInt(jtf2.getText());
+                    }  
+                }
+            );
+            
+            jrb0.addActionListener
+            (
+                new ActionListener() 
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) 
+                    {
+                        status = 0;
+                    }
+                }
+            );
+            
+            jrb1.addActionListener
+            (
+                new ActionListener() 
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) 
+                    {
+                        status = 1;
+                    }
+                }
+            );
+            
+            jrb2.addActionListener
+            (
+                new ActionListener() 
+                {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) 
+                    {
+                        status = 2;
+                    }
+                }
+            );
+            
             littleJp.setLayout(littleGl);
+            littleJp.add(jrb0);
             littleJp.add(jrb1);
             littleJp.add(jrb2);
-            littleJp.add(jrb3);
             bigJp.add(littleJp);
             bigJp.setLayout(bigGl);
-            bigJp.add(jtf);
+            bigJp.add(jtf2);
+            bigJp.add(jtf1);
             bigJp.add(jb);
             bigJp.add(jl);
             this.add(bigJp);
-        }
-        
-        private class Action implements ActionListener
-        {
-
-            @Override
-            public void actionPerformed(ActionEvent ae) 
-            {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-            
         }
 	
 }
