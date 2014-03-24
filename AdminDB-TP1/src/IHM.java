@@ -5,10 +5,13 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 
 public class IHM extends JFrame
@@ -30,7 +33,16 @@ public class IHM extends JFrame
             final JLabel jl = new JLabel();
             final JTextField jtf = new JTextField();
             final JButton jb = new JButton();
-            GridLayout gl = new GridLayout(3, 1);
+            GridLayout gl = new GridLayout(4, 1);
+            
+            JRadioButtonMenuItem jrbmi = new JRadioButtonMenuItem();
+            JRadioButton jrb1 = new JRadioButton("Client");
+            JRadioButton jrb2 = new JRadioButton("Vendeur");
+            JRadioButton jrb3 = new JRadioButton("Responsable");
+            ButtonGroup bg = new ButtonGroup();
+            bg.add(jrb1);
+            bg.add(jrb2);
+            bg.add(jrb3);
             
             jb.addActionListener
             (
@@ -82,6 +94,7 @@ public class IHM extends JFrame
                 }
             );
             
+            jp.add(jrbmi);
             jp.setLayout(gl);
             jp.add(jtf);
             jp.add(jb);
