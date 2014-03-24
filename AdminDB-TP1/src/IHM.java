@@ -63,8 +63,7 @@ public class IHM extends JFrame
                                 request = Filtre.filtrer(request, 1, 20);
                                 statement.execute(request);
                                 ResultSet rs = statement.getResultSet();
-                               
-                                rs.next();
+                                
                                 StringBuilder sb = new StringBuilder();
                                 int i = 0;
                                 
