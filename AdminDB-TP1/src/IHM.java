@@ -73,7 +73,7 @@ public class IHM extends JFrame
                                     rs.next();
                                 }
                                 
-                                if (rs != null)
+                                if (sb.toString().compareTo("") != 0)
                                 {
                                     sb.append(rs.getString(1)).append('\n');
                                     jl.setText(sb.toString());
