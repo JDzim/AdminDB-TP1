@@ -67,13 +67,14 @@ public class IHM extends JFrame
                                 StringBuilder sb = new StringBuilder();
                                 //int i = 0;
                                 
-                                while (!(rs.isLast()))
+                                while (rs.next())
                                 {
-                                    rs.next();
-
                                     //System.out.println(i++);
                                     //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
                                     sb.append(rs.getInt(1)).append('\n');
+                                    
+                                    if (rs.isLast())
+                                        break;
                                 }
                                 
                                 if (sb.toString().compareTo("") != 0)
