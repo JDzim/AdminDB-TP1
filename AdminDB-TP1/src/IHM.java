@@ -1,9 +1,9 @@
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 
 public class IHM extends JFrame
 {
-	public IHM()
+	public IHM() throws ClassNotFoundException
 	{
 		this.setTitle("Filtre SQL");
                 this.setSize(new Dimension(800, 450));
@@ -23,7 +23,7 @@ public class IHM extends JFrame
                 this.setVisible(true);
 	}
         
-        private void initialize()
+        private void initialize() throws ClassNotFoundException
         {
             JPanel jp = new JPanel();
             final JLabel jl = new JLabel();
@@ -36,16 +36,24 @@ public class IHM extends JFrame
                 new ActionListener() 
                 {
                     @Override
-                    public void actionPerformed(ActionEvent ae) 
+                    public void actionPerformed(ActionEvent ae)
                     {
-                        if (ae.getSource().equals(jtf))
+                        try
                         {
-                            
+                            if (ae.getSource().equals(jb))
+                            {
+                                String request = jtf.getText();
+                                Singleton singleton = Singleton.getInstance();
+                                Statement statement = singleton.getConnection().createStatement();
+                            }
                         }
-                        if (ae.getSource().equals(jb))
+                        catch (ClassNotFoundException cnfe)
                         {
-                            String query = jtf.getText();
-                            //Connection c = Singleton.getConnection();
+                            cnfe.printStackTrace();
+                        }
+                        catch (SQLException sqle)
+                        {
+                            sqle.printStackTrace();
                         }
                     }
                 }

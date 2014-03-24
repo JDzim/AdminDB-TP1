@@ -6,7 +6,7 @@ public class Singleton
 {
     
     private static Singleton instance = null;
-    private Connection connection = null;
+    private static Connection connection = null;
     private final String driver = "oracle.jdbc.driver.OracleDriver";
     private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
     private final String login = "system";
@@ -18,12 +18,17 @@ public class Singleton
         connection = DriverManager.getConnection(url,login,password);
     }
     
-    public static Singleton getConnection() throws ClassNotFoundException, SQLException
+    public static Singleton getInstance() throws ClassNotFoundException, SQLException
     {
         if (instance == null)
             instance = new Singleton();
         
         return instance;
+    }
+    
+    public Connection getConnection()
+    {
+        return connection;
     }
     
 }
