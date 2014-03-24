@@ -64,47 +64,58 @@ public class IHM extends JFrame
                             if (ae.getSource().equals(jb))
                             {
                                 String request = jtf1.getText();
-                                Singleton singleton = Singleton.getInstance();
-                                Statement statement = singleton.getConnection().createStatement();
-                                id = Integer.parseInt(jtf2.getText());
-                                request = Filtre.filtrer(request, status, id);
-                                statement.execute(request);
-                                ResultSet rs = statement.getResultSet();
                                 
-                                StringBuilder sb = new StringBuilder();
-                                String s = "";
-                                
-                                if (status == 0)
-                                    s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";
-                                else
-                                    s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";
-                                
-                                while (rs.next())
+                                if (request.toLowerCase().contains("select"))
                                 {
-                                    //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
-                                    
+                                    Singleton singleton = Singleton.getInstance();
+                                    Statement statement = singleton.getConnection().createStatement();
+                                    id = Integer.parseInt(jtf2.getText());
+                                    request = Filtre.filtrer(request, status, id);
+                                    statement.execute(request);
+                                    ResultSet rs = statement.getResultSet();
+
+                                    StringBuilder sb = new StringBuilder();
+                                    String s = "";
+
                                     if (status == 0)
-                                        s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";
+                                        s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";
                                     else
-                                        s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";
-                                    
-                                    //sb.append(rs.getInt(1)).append('\n');
+                                        s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";
+
+                                    while (rs.next())
+                                    {
+                                        //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
+
+                                        if (status == 0)
+                                            s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";
+                                        else
+                                            s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";
+
+                                        //sb.append(rs.getInt(1)).append('\n');
+                                    }
+
+    //                                if (sb.toString().compareTo("") != 0)
+    //                                {
+    //                                    sb.append(rs.getInt(1)).append('\n');
+    //                                    jl.setText(sb.toString());
+    //                                }
+                                    if (s.compareTo("") != 0)
+                                    {
+                                        //jl.setText(s);
+                                        jta.setText(s);
+                                    }
+                                    else
+                                    {
+                                        //jl.setText("nothing");
+                                        jta.setText("nothing");
+                                    }
                                 }
                                 
-//                                if (sb.toString().compareTo("") != 0)
-//                                {
-//                                    sb.append(rs.getInt(1)).append('\n');
-//                                    jl.setText(sb.toString());
-//                                }
-                                if (s.compareTo("") != 0)
+                                if (request.toLowerCase().contains("update"))
                                 {
-                                    //jl.setText(s);
-                                    jta.setText(s);
-                                }
-                                else
-                                {
-                                    //jl.setText("nothing");
-                                    jta.setText("nothing");
+                                    Singleton singleton = Singleton.getInstance();
+                                    Statement statement = singleton.getConnection().createStatement();
+                                    jta.setText(""+statement.executeUpdate(request));
                                 }
                             }
                         }
