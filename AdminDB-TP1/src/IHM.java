@@ -74,16 +74,19 @@ public class IHM extends JFrame
                                 StringBuilder sb = new StringBuilder();
                                 String s = "";
                                 
+                                if (status == 0)
+                                    s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";
+                                else
+                                    s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";
+                                
                                 while (rs.next())
                                 {
                                     //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
                                     
                                     if (status == 0)
-                                        s += rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + "\n";
-                                    if (status == 1)
-                                        s += rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur") + "\n";
-                                    if (status == 2)
-                                        s += rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur") + "\n";
+                                        s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";
+                                    else
+                                        s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";
                                     
                                     //sb.append(rs.getInt(1)).append('\n');
                                 }
