@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class IHM extends JFrame
@@ -34,7 +35,8 @@ public class IHM extends JFrame
         {
             JPanel littleJp = new JPanel();
             JPanel bigJp = new JPanel();
-            final JLabel jl = new JLabel();
+            //final JLabel jl = new JLabel();
+            final JTextArea jta = new JTextArea();
             final JTextField jtf1 = new JTextField();
             final JTextField jtf2 = new JTextField();
             final JButton jb = new JButton();
@@ -92,11 +94,13 @@ public class IHM extends JFrame
 //                                }
                                 if (s.compareTo("") != 0)
                                 {
-                                    jl.setText(s);
+                                    //jl.setText(s);
+                                    jta.setText(s);
                                 }
                                 else
                                 {
-                                    jl.setText("nothing");
+                                    //jl.setText("nothing");
+                                    jta.setText("nothing");
                                 }
                             }
                         }
@@ -107,6 +111,10 @@ public class IHM extends JFrame
                         catch (SQLException sqle)
                         {
                             sqle.printStackTrace();
+                        }
+                        catch (Exception e)
+                        {
+                            System.out.println("Exception");
                         }
                     }
                 }
@@ -169,7 +177,8 @@ public class IHM extends JFrame
             bigJp.add(jtf2);
             bigJp.add(jtf1);
             bigJp.add(jb);
-            bigJp.add(jl);
+            //bigJp.add(jl);
+            bigJp.add(jta);
             this.add(bigJp);
         }
 	
