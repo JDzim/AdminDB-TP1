@@ -66,9 +66,11 @@ public class IHM extends JFrame
                                
                                 rs.next();
                                 StringBuilder sb = new StringBuilder();
+                                int i = 0;
                                 
                                 while (rs.next())
                                 {
+                                    System.out.println(i++);
                                     sb.append(rs.getInt(1)).append('\n');
                                     rs.next();
                                 }
