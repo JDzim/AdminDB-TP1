@@ -29,11 +29,13 @@ public class IHM extends JFrame
         
         private void initialize() throws ClassNotFoundException
         {
-            JPanel jp = new JPanel();
+            JPanel littleJp = new JPanel();
+            JPanel bigJp = new JPanel();
             final JLabel jl = new JLabel();
             final JTextField jtf = new JTextField();
             final JButton jb = new JButton();
-            GridLayout gl = new GridLayout(4, 1);
+            GridLayout littleGl = new GridLayout(1, 3);
+            GridLayout bigGl = new GridLayout(4, 1);
             
             JRadioButtonMenuItem jrbmi = new JRadioButtonMenuItem();
             JRadioButton jrb1 = new JRadioButton("Client");
@@ -93,13 +95,16 @@ public class IHM extends JFrame
                     }
                 }
             );
-            
-            jp.add(jrbmi);
-            jp.setLayout(gl);
-            jp.add(jtf);
-            jp.add(jb);
-            jp.add(jl);
-            this.add(jp);
+            littleJp.setLayout(littleGl);
+            littleJp.add(jrb1);
+            littleJp.add(jrb2);
+            littleJp.add(jrb3);
+            bigJp.add(littleJp);
+            bigJp.setLayout(bigGl);
+            bigJp.add(jtf);
+            bigJp.add(jb);
+            bigJp.add(jl);
+            this.add(bigJp);
         }
         
         private class Action implements ActionListener
