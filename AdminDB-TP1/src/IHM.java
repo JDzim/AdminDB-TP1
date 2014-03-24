@@ -69,13 +69,11 @@ public class IHM extends JFrame
                                 ResultSet rs = statement.getResultSet();
                                 
                                 StringBuilder sb = new StringBuilder();
-                                //int i = 0;
+                                String s = "";
                                 
                                 while (rs.next())
                                 {
-                                    System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
-                                    
-                                    String s = "";
+                                    //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
                                     
                                     if (status == 0)
                                         s += rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + "\n";
@@ -84,13 +82,17 @@ public class IHM extends JFrame
                                     if (status == 2)
                                         s += rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur") + "\n";
                                     
-                                    sb.append(rs.getInt(1)).append('\n');
+                                    //sb.append(rs.getInt(1)).append('\n');
                                 }
                                 
-                                if (sb.toString().compareTo("") != 0)
+//                                if (sb.toString().compareTo("") != 0)
+//                                {
+//                                    sb.append(rs.getInt(1)).append('\n');
+//                                    jl.setText(sb.toString());
+//                                }
+                                if (s.compareTo("") != 0)
                                 {
-                                    sb.append(rs.getInt(1)).append('\n');
-                                    jl.setText(sb.toString());
+                                    jl.setText(s);
                                 }
                                 else
                                 {
