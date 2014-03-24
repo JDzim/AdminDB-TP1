@@ -17,10 +17,10 @@ public class IHM extends JFrame
 	{
 		this.setTitle("Filtre SQL");
                 this.setSize(new Dimension(800, 450));
-                this.setResizable(false);
+                this.setResizable(true);
                 this.initialize();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                this.setAlwaysOnTop(true);
+                this.setAlwaysOnTop(false);
                 this.setVisible(true);
 	}
         
@@ -47,7 +47,6 @@ public class IHM extends JFrame
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
                                 statement.execute(request);
-                                jl.setText(request);
                                 ResultSet rs = statement.getResultSet();
                                 String s = rs.getString(1);
                                 jl.setText(s);
