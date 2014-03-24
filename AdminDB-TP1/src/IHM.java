@@ -16,7 +16,7 @@ public class IHM extends JFrame
 	public IHM() throws ClassNotFoundException
 	{
 		this.setTitle("Filtre SQL");
-                this.setSize(new Dimension(800, 450));
+                this.setSize(new Dimension(400, 150));
                 this.setResizable(true);
                 this.initialize();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
