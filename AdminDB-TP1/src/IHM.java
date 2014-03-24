@@ -69,13 +69,13 @@ public class IHM extends JFrame
                                 
                                 while (rs.next())
                                 {
-                                    sb.append(rs.getString(1)).append('\n');
+                                    sb.append(rs.getInt(1)).append('\n');
                                     rs.next();
                                 }
                                 
                                 if (sb.toString().compareTo("") != 0)
                                 {
-                                    sb.append(rs.getString(1)).append('\n');
+                                    sb.append(rs.getInt(1)).append('\n');
                                     jl.setText(sb.toString());
                                 }
                                 else
