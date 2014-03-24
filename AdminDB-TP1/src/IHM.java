@@ -46,6 +46,7 @@ public class IHM extends JFrame
                                 String request = jtf.getText();
                                 Singleton singleton = Singleton.getInstance();
                                 Statement statement = singleton.getConnection().createStatement();
+                                
                                 statement.execute(request);
                                 ResultSet rs = statement.getResultSet();
                                 rs.next();
@@ -57,7 +58,7 @@ public class IHM extends JFrame
                                 }
                                 else
                                 {
-                                    throw new NoResultException();
+                                    System.out.println("nothing");
                                 }
                             }
                         }
@@ -78,6 +79,17 @@ public class IHM extends JFrame
             jp.add(jb);
             jp.add(jl);
             this.add(jp);
+        }
+        
+        private class Action implements ActionListener
+        {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) 
+            {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
         }
 	
 }
