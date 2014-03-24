@@ -48,6 +48,7 @@ public class IHM extends JFrame
                                 Statement statement = singleton.getConnection().createStatement();
                                 statement.execute(request);
                                 ResultSet rs = statement.getResultSet();
+                                rs.next();
                                 String s = rs.getString(1);
                                 jl.setText(s);
                             }
