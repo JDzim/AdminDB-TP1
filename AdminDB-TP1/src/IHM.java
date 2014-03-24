@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -19,6 +20,8 @@ public class IHM extends JFrame
 {
         private int status = -1;
         private int id = -1;
+        private String[] headers;
+        private Object[][] data;
     
 	public IHM() throws ClassNotFoundException
 	{
@@ -35,7 +38,8 @@ public class IHM extends JFrame
         {
             JPanel littleJp = new JPanel();
             JPanel bigJp = new JPanel();
-            //final JLabel jl = new JLabel();
+            JTable jt = new JTable();
+            final JLabel jl = new JLabel();
             final JTextArea jta = new JTextArea();
             final JTextField jtf1 = new JTextField();
             final JTextField jtf2 = new JTextField();
@@ -78,20 +82,38 @@ public class IHM extends JFrame
                                     String s = "";
 
                                     if (status == 0)
-                                        s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";
+                                    {
+                                        /*s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";*/
+                                        headers = new String[]{"IDCmd" , "Total" , "IDClient"};
+                                    }
                                     else
-                                        s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";
-
+                                    {
+                                        /*s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";*/
+                                        headers = new String[]{"IDCmd" , "Total" , "IDClient" , "IDVendeur"};
+                                    }
+                                        
+                                    int i = 0;
+                                    
                                     while (rs.next())
                                     {
                                         //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
-
+                                        
                                         if (status == 0)
-                                            s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";
+                                        {
+                                            /*s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";*/
+                                            data = new Object[rs.getMetaData().getColumnCount()][3];
+                                            data[i] = new Object[]{rs.getInt("IDCmd") , rs.getInt("Total") , rs.getInt("IDClient")};
+                                        }
                                         else
-                                            s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";
+                                        {
+                                            /*s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";*/
+                                            data = new Object[rs.getMetaData().getColumnCount()][4];
+                                            data[i] = new Object[]{rs.getInt("IDCmd") , rs.getInt("Total") , rs.getInt("IDClient") , rs.getInt("IDVendeur")};
+                                        }
 
                                         //sb.append(rs.getInt(1)).append('\n');
+                                        
+                                        i++;
                                     }
 
     //                                if (sb.toString().compareTo("") != 0)
@@ -134,6 +156,8 @@ public class IHM extends JFrame
                     }
                 }
             );
+            
+            jt = new JTable(data, headers);
             
             jtf2.addActionListener
             (
@@ -193,7 +217,8 @@ public class IHM extends JFrame
             bigJp.add(jtf1);
             bigJp.add(jb);
             //bigJp.add(jl);
-            bigJp.add(jta);
+            bigJp.add(jt);
+            /*bigJp.add(jta);*/
             this.add(bigJp);
         }
 	
