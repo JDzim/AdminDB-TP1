@@ -83,12 +83,12 @@ public class IHM extends JFrame
 
                                     if (status == 0)
                                     {
-                                        /*s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";*/
+                                        s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";
                                         headers = new String[]{"IDCmd" , "Total" , "IDClient"};
                                     }
                                     else
                                     {
-                                        /*s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";*/
+                                        s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";
                                         headers = new String[]{"IDCmd" , "Total" , "IDClient" , "IDVendeur"};
                                     }
                                         
@@ -100,13 +100,13 @@ public class IHM extends JFrame
                                         
                                         if (status == 0)
                                         {
-                                            /*s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";*/
+                                            s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "\n";
                                             data = new Object[rs.getMetaData().getColumnCount()][3];
                                             data[i] = new Object[]{rs.getInt("IDCmd") , rs.getInt("Total") , rs.getInt("IDClient")};
                                         }
                                         else
                                         {
-                                            /*s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";*/
+                                            s += rs.getInt("IDCmd") + "      | " + rs.getInt("Total") + "        | " + rs.getInt("IDClient") + "        | " + rs.getInt("IDVendeur") + "\n";
                                             data = new Object[rs.getMetaData().getColumnCount()][4];
                                             data[i] = new Object[]{rs.getInt("IDCmd") , rs.getInt("Total") , rs.getInt("IDClient") , rs.getInt("IDVendeur")};
                                         }
@@ -124,11 +124,13 @@ public class IHM extends JFrame
                                     if (s.compareTo("") != 0)
                                     {
                                         //jl.setText(s);
+                                        System.out.println(s);
                                         jta.setText(s);
                                     }
                                     else
                                     {
                                         //jl.setText("nothing");
+                                        System.out.println("nothing");
                                         jta.setText("nothing");
                                     }
                                 }
