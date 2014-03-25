@@ -7,10 +7,14 @@ public class Singleton
     
     private static Singleton instance = null;
     private static Connection connection = null;
-    private final String driver = "oracle.jdbc.driver.OracleDriver";
-    private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
-    private final String login = "system";
-    private final String password = "ftyui";
+    //private final String driver = "oracle.jdbc.driver.OracleDriver";
+    private final String driver = "com.mysql.jdbc.Driver";
+    //private final String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    private final String url = "jdbc:mysql://localhost:3306/Magasin";
+    //private final String login = "system";
+    private final String login = "root";
+    //private final String password = "ftyui";
+    private final String password = "";
     
     private Singleton() throws ClassNotFoundException, SQLException
     {
