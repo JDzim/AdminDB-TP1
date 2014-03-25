@@ -20,8 +20,8 @@ public class IHM extends JFrame
 {
         private int status = -1;
         private int id = -1;
-        private String[] headers;
-        private Object[][] data;
+        private String[] headers = new String[] {"empty"};
+        private Object[][] data = new String[][]{{"empty"}};
     
 	public IHM() throws ClassNotFoundException
 	{
@@ -156,6 +156,9 @@ public class IHM extends JFrame
                     }
                 }
             );
+            
+            System.out.println(headers);
+            System.out.println(data);
             
             jt = new JTable(data, headers);
             
