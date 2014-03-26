@@ -153,7 +153,7 @@ public class IHM extends JFrame
                         }
                         catch (Exception e)
                         {
-                            System.out.println("Exception");
+                            e.printStackTrace();
                         }
                     }
                 }
