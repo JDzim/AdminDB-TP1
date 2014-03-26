@@ -12,6 +12,7 @@ public class Main
         
         try
         {
+            // Tout est dans le IHM
             IHM ihm = new IHM();
         }
         catch (ClassNotFoundException cnfe)

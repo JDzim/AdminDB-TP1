@@ -69,23 +69,37 @@ public class IHM extends JFrame
                             {
                                 String request = jtf1.getText();
                                 
+                                // Si la requete contient "select", on execute le filtre correspondant
                                 if (request.toLowerCase().contains("select"))
                                 {
+                                    // On obtient une instance unique a la BdD
                                     Singleton singleton = Singleton.getInstance();
+                                    
+                                    // On initie un statement
                                     Statement statement = singleton.getConnection().createStatement();
+                                    
+                                    // On recupere l'id de la personne
                                     id = Integer.parseInt(jtf2.getText());
+                                    
+                                    // On applique le filtre
                                     request = Filtre.filtrer(request, status, id);
+                                    
+                                    // On execute la requete
                                     statement.execute(request);
+                                    
+                                    // On recupere le resultat
                                     ResultSet rs = statement.getResultSet();
 
                                     StringBuilder sb = new StringBuilder();
                                     String s = "";
 
+                                    // Si le statut de la personne est 0 (client), alors on affiche les entetes Total et IDClient
                                     if (status == 0)
                                     {
                                         s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + "\n";
                                         headers = new String[]{"IDCmd" , "Total" , "IDClient"};
                                     }
+                                    // Sinon on affiche les entetes Total et IDClient et IDVendeur
                                     else
                                     {
                                         s += "IDCmd     " + " | " + "Total      " + " | " + "IDClient       " + " | " + "IDVendeur      " + "\n";
@@ -94,6 +108,7 @@ public class IHM extends JFrame
                                         
                                     int i = 0;
                                     
+                                    // On parcourt le ResultSet pour recuperer les donnees
                                     while (rs.next())
                                     {
                                         //System.out.println(rs.getInt("IDCmd") + " | " + rs.getInt("Total") + " | " + rs.getInt("IDClient") + " | " + rs.getInt("IDVendeur"));
@@ -121,6 +136,8 @@ public class IHM extends JFrame
     //                                    sb.append(rs.getInt(1)).append('\n');
     //                                    jl.setText(sb.toString());
     //                                }
+                                    
+                                    // Si les donnees sont disponibles, on affiche les donnees
                                     if (s.compareTo("") != 0)
                                     {
                                         //jl.setText(s);
@@ -135,6 +152,7 @@ public class IHM extends JFrame
                                     }
                                 }
                                 
+                                // Si la requete contient "update", on execute le filtre correspondant
                                 if (request.toLowerCase().contains("update"))
                                 {
                                     Singleton singleton = Singleton.getInstance();
