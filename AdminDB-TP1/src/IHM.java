@@ -222,8 +222,8 @@ public class IHM extends JFrame
             bigJp.add(jtf1);
             bigJp.add(jb);
             //bigJp.add(jl);
-            bigJp.add(jt);
-            /*bigJp.add(jta);*/
+            /*bigJp.add(jt);*/
+            bigJp.add(jta);
             this.add(bigJp);
         }
 	
